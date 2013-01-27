@@ -1,0 +1,171 @@
+/**
+ * Module dependencies.
+ */
+
+var nodetime = require('nodetime').profile();
+var nodefly = require('nodefly').profile(
+    '63fc9b49e74200cc3e0800c668c050fe',
+    'ProjectSO1_2'
+);
+var nowjs = require('now'); 
+var express = require('express')
+  , routes = require('./routes')
+  , http = require('http')
+  , mongoose = require('mongoose')
+  , path = require('path');
+
+mongoose.connect('mongodb://localhost/sodb');
+
+var Schema=mongoose.Schema
+jobs=new Schema({   
+  _id:{type: Schema.Types.ObjectId},
+  name: String,
+  description: String,
+  phone: String,
+  age: Number,
+  skills: [String],
+  city: String
+});
+
+var modelo_empleos = mongoose.model('jobs',jobs);
+empleos=[]
+
+employers=new Schema({   
+  _id:{type: Schema.Types.ObjectId},
+  company_name: String,
+  contact_name: String,
+  contact_phone: String,
+  contact_email: String,
+  adress: String
+});
+
+empleadores=[]
+var modelo_empleadores = mongoose.model('employers',employers);
+
+employees=new Schema({   
+  _id:{type: Schema.Types.ObjectId},
+  name: String,
+  gender: String,
+  phone: String,
+  age: Number,
+  skills: [String],
+  city: String
+});
+
+solicitantes = [];
+modelo_solicitantes = mongoose.model('employees',employees);
+
+
+
+var app = express();
+
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+app.get('/', routes.index);
+app.get('/empleo', routes.empleo);
+
+
+server = http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+  //a=setInterval(everyone.now.buscar_prods,200);
+  //console.log(a);
+});
+
+everyone = nowjs.initialize(server);
+
+single_producto = "PC";
+everyone.now.el_producto = single_producto;
+
+
+modelo_bid.findOne().sort({"bid_money": 1}).exec(function(err,maxbid){
+	console.log(maxbid);
+});
+
+modelo_bid.findOne().sort({"bid_money": -1}).exec(function(err,maxbid){
+	console.log(maxbid);
+});
+
+modelo_bid.count({}, function(err, c)
+  {
+       console.log('Count is ' + c);
+  });
+//
+
+everyone.now.logStuff = function(msg){
+    console.log(msg);
+}
+
+//Queries del Index
+
+everyone.now.buscar_bid_mayor = function(){modelo_bid.findOne().sort({"bid_money": -1}).exec(function(err,maxbid){
+	everyone.now.maxbid = maxbid;
+})};
+
+everyone.now.buscar_bid_menor = function(){modelo_bid.findOne().sort({"bid_money": 1}).exec(function(err,minbid){
+	everyone.now.minbid = minbid;
+})};
+
+everyone.now.contador_bid = function(){modelo_bid.count({}, function(err, c)
+  {
+       everyone.now.countbid = c
+})};
+
+everyone.now.buscar_bids = function(){modelo_bid.find({}).exec(function(err,foundBids){
+  pujas = foundBids;
+  everyone.now.foundBids = foundBids;
+  //console.log("Fetching bids");		
+})};
+
+//Queries del Product.jade
+
+everyone.now.buscar_bid_mayor_producto = function(){modelo_bid.findOne({'product': single_producto}).sort({"bid_money": -1}).exec(function(err,maxbid){
+	console.log(maxbid);
+	everyone.now.maxbid_producto = maxbid;
+})};
+
+everyone.now.buscar_bid_menor_producto = function(){modelo_bid.findOne({'product': single_producto}).sort({"bid_money": 1}).exec(function(err,minbid){
+	console.log(minbid)
+	everyone.now.minbid_producto = minbid;
+})};
+
+everyone.now.contador_bid_producto = function(){modelo_bid.count({'product': single_producto}, function(err, c)
+  {
+	console.log("El conteo es: "+c);
+       everyone.now.countbid_producto = c
+})};
+
+
+everyone.now.buscar_bids_producto = function(){modelo_bid.find({'product': single_producto}).exec(function(err,foundBids){
+  pujas = foundBids;
+  everyone.now.el_producto = single_producto;
+  console.log(single_producto)
+  console.log(foundBids)
+  everyone.now.foundBids_producto = foundBids;
+  //console.log("Fetching bids");		
+})};
+
+ 
+
+//everyone.now.buscar_prods = function(){modelo_producto.find({}).exec(function(err,foundProds){
+//  everyone.now.foundProds = foundProds;
+//  console.log("Fetching prods");
+//  setInterval(everyone.now.buscar_prods,5000);		
+//})}; 
+
+
+//setInterval(buscar_prods,200);
+

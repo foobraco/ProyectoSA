@@ -1,0 +1,49 @@
+
+/*
+ * GET home page.
+ */
+
+var name = 'Tomato Bids'
+
+exports.index = function(req, res){
+/*        if(Object.keys(req.query).length !== 0){
+	  var randVal = 1+(Math.random()*(10000-1));
+          var randNum = Math.round(randVal);
+          var newBid = new modelo_bid({ user:req.query.username, product:req.query.product, bid_money:randNum });
+          newBid.save(function (err) {
+          if (err) // ...
+            console.log('meow');
+          });
+            
+        }
+	bi = pujas;
+	json_bids = JSON.parse(JSON.stringify(bi)) */
+  res.render('index', { title: 'Tomato Bids', anothervar: 'Property of 502 Studios'});
+};
+
+exports.empleo = function(req, res){
+	var prod = "";
+        if(Object.keys(req.query).length !== 0){
+		 single_producto = req.query.producto
+		 console.log(single_producto);
+        }
+  res.render('empleo', { title: 'TrabajoSMS', the_product: prod });
+};
+
+exports.regempleado = function(req, res){
+	var prod = "";
+        if(Object.keys(req.query).length !== 0){
+		 single_producto = req.query.producto
+		 console.log(single_producto);
+        }
+  res.render('regempleado', { title: 'TrabajoSMS', the_product: prod });
+};
+
+exports.regempleador = function(req, res){
+	var prod = "";
+        if(Object.keys(req.query).length !== 0){
+		 single_producto = req.query.producto
+		 console.log(single_producto);
+        }
+  res.render('regempleador', { title: 'TrabajoSMS', the_product: prod });
+};
