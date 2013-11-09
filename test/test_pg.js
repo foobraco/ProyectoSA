@@ -1,4 +1,5 @@
-var should = require('should');
+var pg = require('pg'), 
+	should = require('should');
 
 
 describe("PostgreSQL", function() {
