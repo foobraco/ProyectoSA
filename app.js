@@ -4,6 +4,7 @@
  */
 
 require('newrelic'); 
+var pg = require('pg');
 
 var express = require('express')
   , routes = require('./routes');
