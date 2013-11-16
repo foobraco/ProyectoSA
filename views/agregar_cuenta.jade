@@ -1,0 +1,56 @@
+!!!
+html
+  head
+    title='Proyecto SA'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+
+body
+  .navbar.navbar-inverse.navbar
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') Proyecto SA
+          .nav-collapse.collapse
+            ul.nav
+              li
+                a(href='/') Inicio
+              li.active
+                a(href='#') Registrar Empleador
+          //
+            /.nav-collapse 
+    .container
+      //
+         Main hero unit for a primary marketing message or call to action 
+      div
+        h1 Registro
+        p
+          | Por favor ingrese los datos de su empresa u organización. Luego le contactarán para confirmar su registro y podrán empezar a publicar oportunidades de trabajo.
+      //
+         Example row of columns 
+      .row
+        form#RegistroEmp(name='RegistroEmp')
+          .span8
+            fieldset
+              legend Datos Generales del Contacto
+              label Nombre
+              input.span3(type='text', name='Nombre', placeholder='Ingrese Nombre')
+              label Organizacion
+              input.span3(type='text', name='Organizacion', placeholder='Organizacion (Opcional)')
+              label Telefono
+              input.span3(type='text', name='Telefono', placeholder='5555555')
+              label Direccion
+              input.span3(type='text', name='Direccion', placeholder='Ingrese Direccion')
+              label Email
+              input.span3(type='text', name='Email', placeholder='Correo Electronico')
+              label Contraseña
+              input.span3(type='password', name='Password', placeholder='Contraseña')
+              label Confirme Contraseña
+              input.span3(type='password', name='PasswordConf', placeholder='Contraseña')
+            input.btn.btn-large.btn-primary(type='submit', name='submitBtn', value='Registrarse')
+      hr
+      footer
+        p © Bryan Alvarado/Ricardo Illescas 2013

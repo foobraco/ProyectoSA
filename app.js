@@ -2,53 +2,14 @@
  * Module dependencies.
  */
 
-//client = require('twilio')(key, key);
-var nowjs = require('now'); 
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , mongoose = require('mongoose')
   , path = require('path');
 
-mongoose.connect('mongodb://localhost/smsdb');
 
-var Schema=mongoose.Schema
-jobs=new Schema({   
-  name: String,
-  description: String,
-  skills: [String],
-  department: String,
-  city: String
-});
-
-modelo_empleos = mongoose.model('jobs',jobs);
-empleos=[]
-
-employers=new Schema({   
-  company_name: String,
-  contact_name: String,
-  contact_phone: String,
-  contact_email: String,
-  adress: String
-});
-
-empleadores=[]
-modelo_empleadores = mongoose.model('employers',employers);
-
-employees=new Schema({   
-  name: String,
-  gender: String,
-  phone: String,
-  age: Number,
-  skills: [String],
-  department: String,
-  city: String
-});
-
-solicitantes = [];
-modelo_solicitantes = mongoose.model('employees',employees);
-
-
+require('newrelic'); 
+var pg = require('pg');
 
 var app = express();
 
@@ -69,9 +30,9 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/empleo', routes.empleo);
-app.get('/solicitante', routes.solicitantes);
-app.get('/empleador', routes.empleadores);
+app.get('/agregar_cuenta', routes.agregar_cuenta);
+app.get('/agregar_usuario', routes.agregar_usuario);
+app.get('/crear_convenio', routes.crear_convenio);
 
 
 server = http.createServer(app).listen(app.get('port'), function(){

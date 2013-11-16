@@ -1,0 +1,76 @@
+!!!
+html
+  head
+    title='Proyecto SA'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+body
+  .navbar.navbar-inverse.navbar
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') Proyecto SA
+          .nav-collapse.collapse
+            ul.nav
+              li
+                a(href='/') Inicio
+              li.active
+                a(href='#') Empleo
+          //
+            /.nav-collapse 
+    .container
+      .row
+        .span24
+          form#ingresarEmpleo(name='ingresarEmpleo')
+            h2 Registro de Trabajo
+            label Nombre
+            input.span3(type='text', name='Nombre', placeholder='Ingrese Nombre')
+            div
+              label.control-label.required Departamento:
+              select(name='Departamento')
+                option Guatemala
+                option Chimaltenango
+                option Huehuetenango
+                option Sololá
+                option Mazatenango
+            div
+              label.control-label.required Municipio:
+              select(name='Municipio')
+                option Guatemala
+                option Fraijanes
+                option Mixco
+                option Villa Nueva
+            fieldset
+              legend Habilidades
+              div
+                select(name='Habilidad1')
+                  option Albañilería
+                  option Plomería
+                  option Limpieza Doméstica
+                  option Limpieza Industrial
+                  option Cocina Doméstica
+                  option Cocina Industrial
+                select(name='Habilidad2')
+                  option Albañilería
+                  option Plomería
+                  option Limpieza Doméstica
+                  option Limpieza Industrial
+                  option Cocina Doméstica
+                  option Cocina Industrial
+                select(name='Habilidad3')
+                  option Albañilería
+                  option Plomería
+                  option Limpieza Doméstica
+                  option Limpieza Industrial
+                  option Cocina Doméstica
+                  option Cocina Industrial
+            label Descripcion Corta
+            textarea(name='Desc', rows='3', maxlength='60')
+            div
+            input.btn.btn-large.btn-primary(type='submit', name='submitBtn', value='Enviar')
+      hr
+      footer
+        p © Bryan Alvarado/Ricardo Illescas 2013
