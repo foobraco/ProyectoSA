@@ -2,14 +2,14 @@
   "name": "liatorp",
   "version": "0.0.1",
   "private": true,
-
   "dependencies": {
     "express": "3.0.5",
     "jade": "*",
     "zombie": ">= 0.12.15",
-    "pg": "~2.8.2"
+    "pg": "~2.8.2",
+    "newrelic": "~1.1.1"
   },
-   "devDependencies": {
+  "devDependencies": {
     "mocha": ">=0.11.0",
     "should": ">=0.5.1"
   },
