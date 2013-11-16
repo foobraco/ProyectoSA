@@ -1,0 +1,71 @@
+!!!
+html
+  head
+    title='TrabajoSMS'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='/js/hummingbird.js')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(type='text/javascript',src='http://localhost:4000/nowjs/now.js')
+body
+  .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') SMS jOBS
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a(href='#') Inicio
+              li
+                a(href='#about') Empleadores
+              li
+                a(href='#contact') Registro
+          //
+            /.nav-collapse 
+    .container
+      .row
+        .span24
+          form#ingresarEmpleo(name='ingresarEmpleo', method='post')
+            h2 Registro de Trabajo
+            label Nombre
+            input.span3(type='text', name='nombre', placeholder='Ingrese Nombre')
+            div
+              label.control-label.required(for='registerEmployee[state]') Departamento:
+              select(name='Depto')
+                option Guatemala
+                option Chimaltenango
+                option Huehuetenango
+                option Sololá
+                option Mazatenango
+            div
+              label.control-label.required(for='registerEmployee[city]') Municipio:
+              select(name='Municipio')
+                option Guatemala
+                option Fraijanes
+                option Mixco
+                option Villa Nueva
+            fieldset
+              legend Habilidades
+              div
+                fieldset#skilList.span4
+                  select(name='registerEmployee[skills][]')
+                    option Albañilería
+                    option Plomería
+                    option Limpieza Doméstica
+                    option Limpieza Industrial
+                    option Cocina Doméstica
+                    option Cocina Industrial
+                button#addSkill.addSkill(for='registerEmployee[skills]') Agregar otra
+            label Descripcion
+            textarea(name='Desc', rows='3')
+            label Salario
+            input.span3(type='text', name='Salario', placeholder='Ingrese Salario')
+            label Duracion
+            input.span3(type='text', name='Tiempo', placeholder='Ingrese Duracion del trabajo.')
+            input.btn.btn-large.btn-primary(type='submit', name='submitBtn', value='Enviar')
+      hr
+      footer
+        p © VDHackaton 2013

@@ -1,47 +1,45 @@
-
 /**
  * Module dependencies.
  */
 
+var express = require('express')
+  , routes = require('./routes')
+  , http = require('http')
+  , path = require('path');
+
+
 require('newrelic'); 
 var pg = require('pg');
 
-var express = require('express')
-  , routes = require('./routes');
-
-var app = module.exports = express.createServer();
-
-// Configuration
+var app = express();
 
 app.configure(function(){
+  app.set('port', process.env.PORT || 4000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(path.join(__dirname, 'public')));
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
-
 app.get('/', routes.index);
-app.get('/crear_convenio', routes.crear_convenio);
-app.get('/agregar_usuario', routes.agregar_usuario);
 app.get('/agregar_cuenta', routes.agregar_cuenta);
-app.get('/registrar_consorcio', routes.registrar_consorcio);
-app.get('/configurar_servicio', routes.configurar_servicio);
+app.get('/agregar_usuario', routes.agregar_usuario);
 app.get('/crear_convenio', routes.crear_convenio);
 
 
-var port = process.env.PORT || 4000;
-app.listen(port, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+server = http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+  //a=setInterval(everyone.now.buscar_prods,200);
+  //console.log(a);
 });
+
+
+

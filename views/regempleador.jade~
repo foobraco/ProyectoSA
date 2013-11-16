@@ -1,0 +1,84 @@
+!!!
+html
+  head
+    title='TrabajoSMS'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='/js/hummingbird.js')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(type='text/javascript',src='http://localhost:4000/nowjs/now.js')
+
+body
+  .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') SMS JOBS
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a(href='#') Inicio
+              li
+                a(href='#about') Empleadores
+              li
+                a(href='#contact') Registro
+            form.navbar-form.pull-right
+              input.span2(type='text', placeholder='Email')
+              input.span2(type='password', placeholder='Password')
+              button.btn(type='submit') Sign in
+          //
+            /.nav-collapse 
+    .container
+      //
+         Main hero unit for a primary marketing message or call to action 
+      div
+        h1 Registro
+        p
+          | Por favor ingrese los datos de su empresa u organización. Luego le contactarán para confirmar su registro y podrán empezar a publicar oportunidades de trabajo.
+      //
+         Example row of columns 
+      .row
+        form#registerEmployer(name='registerEmployer')
+          .span8
+            fieldset
+              legend Datos Generales de la Organización
+              div
+                label.control-label.required(for='registerEmployer[name]') Nombre de la Organización:
+                .controls
+                  input#registerEmployer[name].span4(type='text', name='registerEmployer[name]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployer[address]') Dirección:
+                .controls
+                  input#registerEmployer[address].span4(type='text', name='registerEmployer[address]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployer[phone]') Email:
+                .controls
+                  input#registerEmployer[phone].span4(type='text', name='registerEmployer[phone]', placeholder='', value='')
+            fieldset
+              legend Datos Generales del Contacto
+              div
+                label.control-label.required(for='registerEmployer[contactName]') Nombre:
+                .controls
+                  input#registerEmployer[contactName].span4(type='text', name='registerEmployer[contactName]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployer[position]') Cargo:
+                .controls
+                  input#registerEmployer[position].span4(type='text', name='registerEmployer[position]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployer[email]') Email:
+                .controls
+                  input#registerEmployer[email].span4(type='text', name='registerEmployer[email]', placeholder='usuario@correo.com', value='')
+              div
+                label.control-label.required(for='registerEmployer[password]') Email:
+                .controls
+                  input#registerEmployer[password].span4(type='text', name='registerEmployer[password]', placeholder='Password', value='')
+              div
+                label.control-label.required(for='registerEmployer[passwordConfirmation]') Email:
+                .controls
+                  input#registerEmployer[passwordConfirmation].span4(type='text', name='fsOne[passwordConfirmation]', placeholder='Confirme su password', value='')
+            input.btn.btn-large.btn-primary(type='submit', name='submitBtn', value='Registrarse')
+      hr
+      footer
+        p © VDHackaton 2013

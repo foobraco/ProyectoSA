@@ -1,0 +1,102 @@
+!!!
+html
+  head
+    title='TrabajoSMS'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='/js/hummingbird.js')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(type='text/javascript',src='http://localhost:4000/nowjs/now.js')
+body
+  .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') SMS JOBS
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a(href='#') Inicio
+              li
+                a(href='#about') Empleadores
+              li
+                a(href='#contact') Registro
+            form.navbar-form.pull-right
+              input.span2(type='text', placeholder='Email')
+              input.span2(type='password', placeholder='Password')
+              button.btn(type='submit') Sign in
+          //
+            /.nav-collapse 
+    .container
+      //
+         Main hero unit for a primary marketing message or call to action 
+      div
+        h1 Registro de Candidatos
+        p
+          | Ingres los datos del candidato para poderle enviar ofertas de trabajo relacionadas con sus habilidades.
+      //
+         Example row of columns 
+      .row
+        form#registerEmployee(name='registerEmployee')
+          .span8
+            fieldset
+              legend Datos Generales
+              div
+                label.control-label.required(for='registerEmployee[name]') Nombre:
+                .controls
+                  input#registerEmployee[name].span4(type='text', name='registerEmployee[name]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployee[address]') Dirección:
+                .controls
+                  input#registerEmployee[address].span4(type='text', name='registerEmployee[address]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployee[phone]') Teléfono:
+                .controls
+                  input#registerEmployee[phone].span4(type='text', name='registerEmployee[phone]', placeholder='', value='')
+              div
+                label.control-label.required(for='registerEmployee[birthDate]') Fecha de nacimiento:
+                .controls
+                  input#registerEmployee[birthDate].span4(type='text', name='registerEmployee[address]', placeholder='dd/mm/aaaa', value='')
+              div
+                label.control-label.required(for='registerEmployee[gender]') Sexo:
+                .controls
+                  label.radio
+                    input(type='radio', name='registerEmployee[gender]', value='M')
+                    | Masculino
+                  label.radio
+                    input(type='radio', name='registerEmployee[gender]', value='F')
+                    | Femenino
+                div
+                  label.control-label.required(for='registerEmployee[state]') Departamento:
+                  select(name='registerEmployee[state]')
+                    option Guatemala
+                    option Chimaltenango
+                    option Huehuetenango
+                    option Sololá
+                    option Mazatenango
+                div
+                  label.control-label.required(for='registerEmployee[city]') Municipio:
+                  select(name='registerEmployee[city]')
+                    option Guatemala
+                    option Fraijanes
+                    option Mixco
+                    option Villa Nueva
+            fieldset
+              legend Habilidades
+              div
+                label.control-label.required(for='registerEmployee[skills]')
+                  a#addSkill.addSkill(href='#') Agregar otra
+                fieldset#skilList.span4
+                  select(name='registerEmployee[skills][]')
+                    option Albañilería
+                    option Plomería
+                    option Limpieza Doméstica
+                    option Limpieza Industrial
+                    option Cocina Doméstica
+                    option Cocina Industrial
+            input.btn.btn-large.btn-primary(type='submit', name='submitBtn', value='Registrarse')
+      hr
+      footer
+        p © VDHackaton 2013

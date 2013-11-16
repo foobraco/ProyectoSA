@@ -1,0 +1,225 @@
+!!!
+html
+  head
+    title='Tomato Bid'
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript',src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(type='text/javascript',src='http://localhost:3000/nowjs/now.js')
+body
+  include layout
+  div.container
+    h1  ^
+  div.container
+        div.row-fluid
+          div.span6
+              h3 Producto
+              div#nombreproducto
+        
+          div.span6
+              h3 Detalles
+              div#Detalles
+
+  div.container
+
+    div.content
+      block content
+        div.page-header
+        div.row-fluid
+
+          div.span6
+            div.well.sidebar-nav
+              h3 Feed de Pujas
+              div#pujas
+
+
+          div.span6
+            div.well.sidebar-nav
+              h3 Puja Mayor
+              div#pujamayor
+
+              h3 Numero de Pujas
+              div#numpujas
+
+              h3 Puja Menor
+              div#pujamenor
+
+
+
+    div#footer.footer 
+      p &copy; 502 Studios 2013
+
+
+  script(type='text/javascript',src='http://localhost:3000/nowjs/now.js')
+  script
+   now.ready(function(){
+    // "Hello World!" will print on server
+   now.logStuff("Hello World!");
+   });
+
+
+  script
+   now.ready(function(){
+    // "Hello World!" will print on server
+   now.logStuff("Hello World!");
+   //fetch products and put them on now.foundProds
+   //now.buscar_prods();
+   //print the products on $("#messages"); every 2000ms
+   now.printBids();
+   now.printMax();
+   now.printMin();
+   now.printCount();
+   now.prettyProduct();	
+   now.Detalles();	
+   });
+   
+   now.Detalles=function(){
+   var texto ="";
+      if(now.el_producto === "PC"){
+          texto = "new i9 Processor, super high end graphics card, More HD than you could ever use!.";}
+      if(now.el_producto === "TV"){
+          texto = "High Definition up to 1080p, watch those soap operas like never before!";}
+      if(now.el_producto === "Phone"){
+          texto = "Nexus Super 5, Android Based, make your friends Jelly.";}
+      if(now.el_producto === "Headphones"){
+          texto = "Wear these if you want to listen to music in public, be a nice person.";}
+      if(now.el_producto === "Laptop"){
+          texto = "All your pr0n on the go.";}
+      if(now.el_producto === "Kindle Fire"){
+          texto = "The new tablet device, keep away from wet places.";}
+      if(now.el_producto === "Canon Camera"){
+          texto = "You know, one of those expensive devices for your crappy FB photos, hipster like.";}
+      if(now.el_producto === "Wii U"){
+          texto = "Nintendos new gaming console D:, holy shit! check the controller!!!!.";}
+      if(now.el_producto === "Western Digital HD"){
+          texto = "Super 123901823GB capacity, DOWNLOAD THE INTERNET!!!!!!!!!!.";}
+      if(now.el_producto === "Raspberry Pi"){
+          texto = "Geeky device, perfect gift for your inner hacker.";}
+      $("#Detalles").html(texto);
+      setInterval(now.Detalles,5000);
+   }
+
+   now.prettyProduct=function(){
+   var texto ="";
+      if(now.el_producto === "PC"){
+          texto = "<img src=/images/pc.jpg height="+'200'+" width="+'200'+"> <Br> PC";}
+      if(now.el_producto === "TV"){
+          texto = "<img src=/images/tv.jpg height="+'200'+" width="+'200'+"> <Br> TV";}
+      if(now.el_producto === "Phone"){
+          texto = "<img src=/images/phone.jpg height="+'200'+" width="+'200'+"> <Br> Phone";}
+      if(now.el_producto === "Headphones"){
+          texto = "<img src=/images/headphones.jpg height="+'200'+" width="+'200'+"> <Br> Headphones";}
+      if(now.el_producto === "Laptop"){
+          texto = "<img src=/images/laptop.jpg height="+'200'+" width="+'200'+"> <Br> Laptop";}
+      if(now.el_producto === "Kindle Fire"){
+          texto = "<img src=/images/kindle.jpg height="+'200'+" width="+'200'+"> <Br> Kindle Fire";}
+      if(now.el_producto === "Canon Camera"){
+          texto = "<img src=/images/canon.jpg height="+'200'+" width="+'200'+"> <Br> Canon Camera";}
+      if(now.el_producto === "Wii U"){
+          texto = "<img src=/images/wiiu.jpg height="+'200'+" width="+'200'+"> <Br> Wii U";}
+      if(now.el_producto === "Western Digital HD"){
+          texto = "<img src=/images/wester.jpg height="+'200'+" width="+'200'+"> <Br> Western Digital HD";}
+      if(now.el_producto === "Raspberry Pi"){
+          texto = "<img src=/images/pi.jpg height="+'200'+" width="+'200'+"> <Br> Raspberry Pi";}
+      $("#nombreproducto").html(texto);
+      setInterval(now.prettyProduct,5000);
+   }
+
+
+   now.printCount = function(){
+   now.contador_bid_producto();
+   var texto;
+   if (now.countbid_producto){
+       $("#numpujas").html(now.countbid_producto+"<br>");
+       setInterval(now.printCount,10000);
+     }
+   }
+
+   now.printMin = function(){
+   now.buscar_bid_menor_producto();
+   var texto;
+   if (now.maxbid_producto){
+       $("#pujamenor").html(now.minbid_producto._doc.bid_money+"<br>");
+       setInterval(now.printMin,10000);
+     }
+   }
+
+   now.printMax = function(){
+   now.buscar_bid_mayor_producto();
+   var texto;
+   if (now.maxbid_producto){
+       $("#pujamayor").html(now.maxbid_producto._doc.bid_money+"<br>");
+       setInterval(now.printMax,5000);
+     }
+   }
+
+   now.printBids = function(){
+   now.buscar_bids_producto();
+   var texto ="";
+   if (now.foundBids_producto){
+     var puj = JSON.parse(JSON.stringify(now.foundBids_producto));
+       for(var i=0;i<puj.length;i++){
+          if(puj[i]._doc.product === "PC"){
+          texto += "<br>"+"<a href=/product?producto=PC><img src=/images/pc.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "TV"){
+          texto += "<br>"+"<a href=/product?producto=TV><img src=/images/tv.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Phone"){
+          texto += "<br>"+"<a href=/product?producto=Phone><img src=/images/phone.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Headphones"){
+          texto += "<br>"+"<a href=/product?producto=headphones><img src=/images/headphones.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Laptop"){
+          texto += "<br>"+"<a href=/product?producto=Laptop><img src=/images/laptop.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Kindle Fire"){
+          texto += "<br>"+"<a href=/product?producto=Kindle Fire><img src=/images/kindle.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Canon Camera"){
+          texto += "<br>"+"<a href=/product?producto=Canon Camera><img src=/images/canon.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Wii U"){
+          texto += "<br>"+"<a href=/product?producto=Wii U><img src=/images/wiiu.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Western Digital HD"){
+          texto += "<br>"+"<a href=/product?producto=Western Digital HD><img src=/images/western.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+          if(puj[i]._doc.product === "Raspberry Pi"){
+          texto += "<br>"+"<a href=/product?producto=Raspberry Pi><img src=/images/pi.jpg height="+'40'+" width="+'40'+"></a> "+puj[i]._doc.product+" "+puj[i]._doc.user+" "+puj[i]._doc.bid_money;}
+       }
+       $("#pujas").html(texto+"<br>");
+       setInterval(now.printBids,5000);
+     }
+   }
+
+
+     
+
+
+
+  script
+     HummingbirdTracker = {
+     track: function(env) {
+     if(typeof(env) == "undefined") { env = {}; }
+
+     // send some miscellaneous info about the request
+     env.u = document.location.href;
+     env.bw = window.innerWidth;
+     env.bh = window.innerHeight;
+
+     // example of sending a cookie named 'guid'
+     // env.guid = (document.cookie.match(/guid=([^\_]*)_([^;]*)/) || [])[2];
+
+     if(document.referrer && document.referrer != "") {
+       env.ref = document.referrer;
+     }
+
+     env.rnd = Math.floor(Math.random() * 10e12);
+
+     var params = [];
+     i = 0;
+     for(var key in env) {
+       i++;
+       if(env.hasOwnProperty(key)) {
+         params.push(encodeURIComponent(i) + "=" + encodeURIComponent(env[i]));
+       }
+     }
+
+     // replace 'localhost:200200' with hummingbird's URL
+     var img = new Image();
+     img.src = 'http://localhost:20000/tracking_pixel.gif';
+     }
+     };
+     HummingbirdTracker.track();
