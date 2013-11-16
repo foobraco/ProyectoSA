@@ -32,7 +32,10 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/agregar_cuenta', routes.agregar_cuenta);
 app.get('/agregar_usuario', routes.agregar_usuario);
+app.get('/registrar_consorcio', routes.registrar_consorcio);
+app.get('/configurar_servicio', routes.configurar_servicio);
 app.get('/crear_convenio', routes.crear_convenio);
+
 
 
 server = http.createServer(app).listen(app.get('port'), function(){

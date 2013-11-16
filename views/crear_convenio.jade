@@ -18,7 +18,7 @@ body
               li
                 a(href='/') Inicio
               li.active
-                a(href='#') Empleo
+                a(href='#') Crear Convenio
           //
             /.nav-collapse 
     .container
@@ -28,45 +28,7 @@ body
             h2 Registro de Trabajo
             label Nombre
             input.span3(type='text', name='Nombre', placeholder='Ingrese Nombre')
-            div
-              label.control-label.required Departamento:
-              select(name='Departamento')
-                option Guatemala
-                option Chimaltenango
-                option Huehuetenango
-                option Sololá
-                option Mazatenango
-            div
-              label.control-label.required Municipio:
-              select(name='Municipio')
-                option Guatemala
-                option Fraijanes
-                option Mixco
-                option Villa Nueva
-            fieldset
-              legend Habilidades
-              div
-                select(name='Habilidad1')
-                  option Albañilería
-                  option Plomería
-                  option Limpieza Doméstica
-                  option Limpieza Industrial
-                  option Cocina Doméstica
-                  option Cocina Industrial
-                select(name='Habilidad2')
-                  option Albañilería
-                  option Plomería
-                  option Limpieza Doméstica
-                  option Limpieza Industrial
-                  option Cocina Doméstica
-                  option Cocina Industrial
-                select(name='Habilidad3')
-                  option Albañilería
-                  option Plomería
-                  option Limpieza Doméstica
-                  option Limpieza Industrial
-                  option Cocina Doméstica
-                  option Cocina Industrial
+            
             label Descripcion Corta
             textarea(name='Desc', rows='3', maxlength='60')
             div

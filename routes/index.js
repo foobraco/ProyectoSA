@@ -25,7 +25,3 @@ exports.registrar_consorcio = function(req, res){
 exports.configurar_servicio = function(req, res){
     res.render('configurar_servicio', { title: 'Configurar Servicio' });
 };
-
-exports.crear_convenio = function(req, res){
-    res.render('crear_convenio', { title: 'Crear Convenio' });
-};
