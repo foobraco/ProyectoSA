@@ -6,7 +6,8 @@
     "express": "2.5.8",
     "jade": ">= 0.0.1",
     "zombie": ">= 0.12.15",
-    "pg": "~2.8.2"
+    "pg": "~2.8.2",
+    "newrelic": "~1.1.1"
   },
   "devDependencies": {
     "mocha": ">=0.11.0",
