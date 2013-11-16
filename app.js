@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-client = require('twilio')('AC9682b566fe7d18db644746d0a63e75bb', '90dee41ddcf9c3ed9cc6b15358c8c561');
+//client = require('twilio')(key, key);
 var nowjs = require('now'); 
 var express = require('express')
   , routes = require('./routes')
